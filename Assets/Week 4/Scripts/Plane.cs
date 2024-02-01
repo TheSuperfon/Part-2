@@ -16,13 +16,18 @@ public class Plane : MonoBehaviour
     public float speed;
     public AnimationCurve landing;
     float timerValue;
+    float Dangerzone = 1; //top gun referance
+
+
+    float planedistance;
     
 
     
 
     private void Start()
     {
-        
+        //spriteRenderer.color = Color.white;
+
         lineRenderer = GetComponent<LineRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
@@ -59,6 +64,14 @@ public class Plane : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position.y >= 5.3 || transform.position.y <= -5.3 || transform.position.x <= -10 || transform.position.x >= 10)
+        {
+            Destroy(gameObject);
+
+        }
+
+
+
         if(Input.GetKey(KeyCode.Space)) 
         {
             timerValue += 0.5f * Time.deltaTime;
@@ -73,6 +86,7 @@ public class Plane : MonoBehaviour
             transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
 
         }
+
 
 
 
@@ -93,6 +107,7 @@ public class Plane : MonoBehaviour
 
             }
         }
+
         
     }
 
@@ -116,6 +131,32 @@ public class Plane : MonoBehaviour
         
     }
 
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        spriteRenderer.color = Color.red;
+        
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        spriteRenderer.color = Color.white;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        planedistance = Vector3.Distance(collision.attachedRigidbody.position, transform.position);
+
+        if (planedistance < Dangerzone)
+        {
+            Destroy(gameObject);
+        }
+
+        //Debug.Log(planedistance);
+    }
 
 
 }
