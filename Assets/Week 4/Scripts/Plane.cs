@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Plane : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class Plane : MonoBehaviour
     float timerValue;
     float Dangerzone = 1; //top gun referance
 
+    public bool disapear;
+
+    public GameObject runwayobject;
+
+    GameObject Collisionobject;
 
     float planedistance;
     
@@ -27,7 +33,7 @@ public class Plane : MonoBehaviour
     private void Start()
     {
         //spriteRenderer.color = Color.white;
-
+        disapear = false;
         lineRenderer = GetComponent<LineRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
@@ -72,7 +78,7 @@ public class Plane : MonoBehaviour
 
 
 
-        if(Input.GetKey(KeyCode.Space)) 
+        /*if(Input.GetKey(KeyCode.Space)) 
         {
             timerValue += 0.5f * Time.deltaTime;
             float interpolation = landing.Evaluate(timerValue);
@@ -85,8 +91,29 @@ public class Plane : MonoBehaviour
             }
             transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
 
-        }
 
+        //instructions said instead of but i was unsure if i should delete this code.
+
+
+        }*/
+
+        if (disapear == true)
+        {
+            timerValue += 0.5f * Time.deltaTime;
+            float interpolation = landing.Evaluate(timerValue);
+
+
+            if (transform.localScale.z < 0.1f)
+            {
+                Collisionobject.GetComponent<Runway>().score += 1;
+                Destroy(gameObject);
+                
+            }
+            transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
+
+            //Debug.Log("yay");
+
+        }
 
 
 
@@ -136,9 +163,14 @@ public class Plane : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        spriteRenderer.color = Color.red;
         
-        
+
+        if (Collisionobject.name != runwayobject.name)
+        {
+
+            spriteRenderer.color = Color.red;
+
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -148,12 +180,22 @@ public class Plane : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        planedistance = Vector3.Distance(collision.attachedRigidbody.position, transform.position);
+        Collisionobject = collision.gameObject;
 
-        if (planedistance < Dangerzone)
+
+        if (Collisionobject.name != runwayobject.name)
         {
-            Destroy(gameObject);
+
+            planedistance = Vector3.Distance(collision.attachedRigidbody.position, transform.position);
+
+            if (planedistance < Dangerzone)
+            {
+                Destroy(gameObject);
+            }
+
         }
+
+
 
         //Debug.Log(planedistance);
     }
