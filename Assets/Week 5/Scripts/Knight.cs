@@ -43,7 +43,7 @@ public class Knight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !clickingOnSelf)
+        if (Input.GetMouseButtonDown(0) && !clickingOnSelf && (health > 0))
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
