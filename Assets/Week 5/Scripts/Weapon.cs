@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    float speed = 15;
+    float speed = 35;
     Rigidbody2D rb;
     public float timer;
 
@@ -34,9 +34,15 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.SendMessage("TakeDamage", 2);
+        collision.gameObject.SendMessage("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
         //Debug.Log("ok");
-        Destroy(gameObject);
+        if (collision.gameObject.name == ("Knight"))
+        {
+            Destroy(gameObject);
+
+
+        }
+        
     }
 
 
