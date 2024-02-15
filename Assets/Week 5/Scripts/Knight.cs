@@ -13,6 +13,7 @@ public class Knight : MonoBehaviour
     public float health;
     public float maxHealth = 5;
     public Healthbar healthbar;
+    public bool isdead;
 
 
 
@@ -26,6 +27,8 @@ public class Knight : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isdead) return;
+
         movement = destination - (Vector2)transform.position;
 
         if(movement.magnitude < 0.1)
@@ -43,6 +46,8 @@ public class Knight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isdead) return;
+
         if (Input.GetMouseButtonDown(0) && !clickingOnSelf && (health > 0))
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -63,6 +68,8 @@ public class Knight : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (isdead) return;
+
         clickingOnSelf = true;
         SendMessage("TakeDamage", 1);
         //TakeDamage(1);
@@ -85,11 +92,13 @@ public class Knight : MonoBehaviour
         if (health == 0)
         {
             //die
+            isdead = true;
             animator.SetTrigger("Death");
 
         }
         else
         {
+            isdead = false;
             animator.SetTrigger("TakeDamage");
 
         }
