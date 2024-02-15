@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Knight : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class Knight : MonoBehaviour
     {
         if (isdead) return;
 
-        if (Input.GetMouseButtonDown(0) && !clickingOnSelf && (health > 0))
+        if (Input.GetMouseButtonDown(0) && !clickingOnSelf && !EventSystem.current.IsPointerOverGameObject())
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -91,6 +92,7 @@ public class Knight : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
         if (health == 0)
         {
+            //if (isdead) return; //this code stops the knight from taking damage from weapon and was tested but not enough to ensure that it doesn't mess other things up
             //die
             isdead = true;
             animator.SetTrigger("Death");
