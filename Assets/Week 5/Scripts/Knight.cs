@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Knight : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class Knight : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        health = maxHealth;
+        //health = maxHealth;
+        PlayerPrefs.GetFloat("RealHealth", 0);
     }
 
     private void FixedUpdate()
@@ -88,11 +90,14 @@ public class Knight : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        Debug.Log(PlayerPrefs.GetFloat("RealHealth"));
+        PlayerPrefs.SetFloat("RealHealth", health -= damage);
+        //health -= damage;
+
         health = Mathf.Clamp(health, 0, maxHealth);
-        if (health == 0)
+        if (PlayerPrefs.GetFloat("RealHealth") == 0)
         {
-            //if (isdead) return; //this code stops the knight from taking damage from weapon and was tested but not enough to ensure that it doesn't mess other things up
+            //if (isdead) return; //this code stops the knight from taking damage from weapon when dead and was tested but not enough to ensure that it doesn't mess other things up
             //die
             isdead = true;
             animator.SetTrigger("Death");
@@ -100,6 +105,9 @@ public class Knight : MonoBehaviour
         }
         else
         {
+
+            
+
             isdead = false;
             animator.SetTrigger("TakeDamage");
 
