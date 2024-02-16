@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 1409525612}
   - component: {fileID: 1409525611}
   m_Layer: 5
-  m_Name: Button
+  m_Name: HealthButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1023,8 +1023,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4709178890252226119}
         m_TargetAssemblyTypeName: Knight, Assembly-CSharp
-        m_MethodName: TakeDamage
-        m_Mode: 4
+        m_MethodName: UnTakeDamage
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

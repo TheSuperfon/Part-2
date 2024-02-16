@@ -25,7 +25,8 @@ public class Knight : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         //health = maxHealth;
-        PlayerPrefs.GetFloat("RealHealth", 0);
+        PlayerPrefs.GetFloat("RealHealth", 5);
+        health = PlayerPrefs.GetFloat("RealHealth");
     }
 
     private void FixedUpdate()
@@ -49,7 +50,12 @@ public class Knight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        SendMessage("startValue", PlayerPrefs.GetFloat("RealHealth"));
         if (isdead) return;
+
+        
+
 
         if (Input.GetMouseButtonDown(0) && !clickingOnSelf && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -90,12 +96,12 @@ public class Knight : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log(PlayerPrefs.GetFloat("RealHealth"));
-        PlayerPrefs.SetFloat("RealHealth", health -= damage);
-        //health -= damage;
+        
+        health -= damage;
+        PlayerPrefs.SetFloat("RealHealth", health);
 
         health = Mathf.Clamp(health, 0, maxHealth);
-        if (PlayerPrefs.GetFloat("RealHealth") == 0)
+        if (health == 0)
         {
             //if (isdead) return; //this code stops the knight from taking damage from weapon when dead and was tested but not enough to ensure that it doesn't mess other things up
             //die
@@ -105,7 +111,7 @@ public class Knight : MonoBehaviour
         }
         else
         {
-
+            
             
 
             isdead = false;
@@ -115,6 +121,18 @@ public class Knight : MonoBehaviour
 
 
 
+    }
+
+    public void UnTakeDamage()
+    {
+        PlayerPrefs.DeleteKey("RealHealth");
+
+        health = 4; //heals four but knight is still dead
+        SendMessage("TakeDamage", -1); //allows the knight to heal one (5 total) and revive from the dead state
+        PlayerPrefs.SetFloat("RealHealth",health);
+        
+        
+    
     }
 
 

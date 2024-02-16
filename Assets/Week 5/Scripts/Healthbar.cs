@@ -7,11 +7,18 @@ public class Healthbar : MonoBehaviour
 {
     public Slider slider;
 
-    public void TakeDamage(float damage)
+    /*public void TakeDamage(float damage)
     {
         slider.value -= damage;
 
 
+    }*/
+
+    public void startValue(float Starthealth)
+    {
+        
+        slider.value = Starthealth;
+        
     }
 
 
