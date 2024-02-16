@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor.Build;
+//using UnityEditor.Build;
 
 public class TeleporterScript : MonoBehaviour
 {
