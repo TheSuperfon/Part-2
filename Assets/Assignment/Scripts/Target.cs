@@ -10,6 +10,7 @@ public class Target : MonoBehaviour
     public float Ylocation;
     bool ClickingTarget;
     public GameObject TargetsScoreReference;
+    public GameObject PlayerCharacter;
     
     
     // Start is called before the first frame update
@@ -25,10 +26,7 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && ClickingTarget)
-        {
-            
-        }
+        
         
         
     }
@@ -36,13 +34,17 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        ClickingTarget = true;
         TargetsScoreReference.SendMessage("ScoreUpdates", 1);
+        
+        PlayerCharacter.SendMessage("ShootAnimation");
+
+
+        //Debug.Log("neat");
     }
 
     private void OnMouseUp()
     {
-        ClickingTarget = false;
+        //PlayerCharacter.SendMessage("ShootAnimation");
     }
 
 

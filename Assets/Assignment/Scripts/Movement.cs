@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
         //Debug.Log(MovementMultiplier);
         if (stopmoving == false)
         {//learned how to do point and click movememnt from week 5 and edited to fit the cowboy game
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
             {
                 location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
@@ -79,6 +79,21 @@ public class Movement : MonoBehaviour
         
     }
 
+    public void ShootAnimation()
+    {
+
+        animate.SetTrigger("WillShootTrigger");
+        
+        
+    }
+
+    public void EndPose()
+    {
+
+        animate.SetTrigger("EndState");
+        
+        
+    }
     
 
 
