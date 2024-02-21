@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    public GameObject PlayerCharacter;
+    public GameObject Target;
+
+
     // Start is called before the first frame update
     void Start()
     {

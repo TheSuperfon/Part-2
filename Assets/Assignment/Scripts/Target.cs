@@ -38,7 +38,10 @@ public class Target : MonoBehaviour
         
         PlayerCharacter.SendMessage("ShootAnimation");
 
+        Xlocation = Random.Range(-8,8);    
+        Ylocation = Random.Range(-4,4);
 
+        transform.position = new Vector2(Xlocation,Ylocation);
         //Debug.Log("neat");
     }
 
