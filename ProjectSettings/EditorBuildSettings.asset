@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Week 5/Scene/Week5Scene.unity
     guid: 59cca9dc901cdad44a9b5fbda7758b46
+  - enabled: 1
+    path: Assets/Assignment/Scenes/PointAndClickTitle.unity
+    guid: 86f0a4d56b60349499f90a117d1bbdfb
+  - enabled: 1
+    path: Assets/Assignment/Scenes/PointAndClickScene.unity
+    guid: 901128c6b66b2bc4caea44e6288149c4
   m_configObjects: {}
