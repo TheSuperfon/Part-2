@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
     {
         //Debug.Log(MovementMultiplier);
         if (stopmoving == false)
-        {
+        {//learned how to do point and click movememnt from week 5 and edited to fit the cowboy game
             if (Input.GetMouseButtonDown(0))
             {
                 location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour
 
         if(move.magnitude < 0.1)
         {
-            move = Vector2.zero;
+            move = Vector2.zero; //stops cowboy's movement when reached position
         }
 
         Rigibody.MovePosition(Rigibody.position +  move.normalized * speed * Time.deltaTime);
