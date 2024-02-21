@@ -8,9 +8,9 @@ public class Target : MonoBehaviour
 {
     public float Xlocation;
     public float Ylocation;
-    bool ClickingTarget;
     public GameObject TargetsScoreReference;
     public GameObject PlayerCharacter;
+    public bool EndTheGame;
     
     
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class Target : MonoBehaviour
     {
         Xlocation = Random.Range(-8,8);    
         Ylocation = Random.Range(-4,4);
-
+        EndTheGame = false;
         transform.position = new Vector2(Xlocation,Ylocation);
 
     }
@@ -34,9 +34,15 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
+
+        if (EndTheGame) return;
         TargetsScoreReference.SendMessage("ScoreUpdates", 1);
         
         PlayerCharacter.SendMessage("ShootAnimation");
+
+
+
+
 
         Xlocation = Random.Range(-8,8);    
         Ylocation = Random.Range(-4,4);
@@ -50,7 +56,11 @@ public class Target : MonoBehaviour
         //PlayerCharacter.SendMessage("ShootAnimation");
     }
 
-
+    public void NoMore()
+    {
+        EndTheGame = true;
+        
+    }
 
 
 

@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (stopmoving) return;
         
         
         
@@ -92,7 +93,7 @@ public class Movement : MonoBehaviour
 
         animate.SetTrigger("EndState");
         
-        
+        stopmoving = true;
     }
     
 
