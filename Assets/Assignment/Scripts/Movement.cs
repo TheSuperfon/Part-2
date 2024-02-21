@@ -31,6 +31,10 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
+        
+        
         //Debug.Log(MovementMultiplier);
         if (stopmoving == false)
         {//learned how to do point and click movememnt from week 5 and edited to fit the cowboy game
