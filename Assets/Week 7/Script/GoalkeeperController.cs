@@ -38,7 +38,7 @@ public class GoalkeeperController : MonoBehaviour
             GoalkeeperRigidbody.position = Vector2.MoveTowards(GoalkeeperRigidbody.position,(Vector2)transform.position + goalkeeperdirection * goalLinedistance / 4, 0.2f); //half distance of the other one
 
         }
-        else if (goalLinedistance > goalkeeperdirection.magnitude )//when player enters the goal radius
+        else if (goalLinedistance > goalkeeperdirection.magnitude )//when player is not in the goal radius
         {
             GoalkeeperRigidbody.position = Vector2.MoveTowards(GoalkeeperRigidbody.position, (Vector2)transform.position + goalkeeperdirection * goalLinedistance / 2, 0.2f); //double distance of the other one (regular distance)
 
