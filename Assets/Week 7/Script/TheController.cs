@@ -38,7 +38,7 @@ public class TheController : MonoBehaviour
         if(direction != Vector2.zero)
         {
             SelectedPlayer.Move(direction);
-            Debug.Log(direction);
+            //Debug.Log(direction);
             direction = Vector2.zero;
             charge = 0;
             ChargeSlider.value = charge;
