@@ -15,6 +15,7 @@ public class FootballGuy : MonoBehaviour
     {
         Spritething = GetComponent<SpriteRenderer>();
         Selected(false);
+        
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class FootballGuy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Selected(true);
+        TheController.SetSelectedPlayer(this);
     }
 
     public void Selected(bool IsSelected)
