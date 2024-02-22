@@ -46,7 +46,7 @@ public class FootballGuy : MonoBehaviour
     public void Move(Vector2 direction)
     {
         Rigi.AddForce(direction * speed);
-        Debug.Log("eii");
+        //Debug.Log("eii");
 
     }
 
